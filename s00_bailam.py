@@ -49,8 +49,18 @@ greeting('2100')             | Good evening!          | 14
 #endregion debai
 
 #region bailam
-
 def greeting(hour_str):
   # hint convert to 24h-format -> do greet
-  pass#TODO
+   gio = int(hour_str[:2])
+   if 5 <= gio < 12: 
+      return "Good morning!" 
+   elif 12 <= gio < 18: 
+      return "Good afternoon!" 
+   elif 18 <= gio < 22: 
+      return "Good evening!" 
+   else: return "Unknow"
+print(greeting('06:00'))
+print(greeting('0600'))
+print(greeting('21:00'))
+print(greeting('2100'))
 #endregion bailam
