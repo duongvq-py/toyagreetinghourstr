@@ -50,17 +50,38 @@ greeting('2100')             | Good evening!          | 14
 
 #region bailam
 def greeting(hour_str):
-  # hint convert to 24h-format -> do greet
-   gio = int(hour_str[:2])
-   if 5 <= gio < 12: 
-      return "Good morning!" 
-   elif 12 <= gio < 18: 
-      return "Good afternoon!" 
-   elif 18 <= gio < 22: 
-      return "Good evening!" 
-   else: return "Unknow"
-print(greeting('06:00'))
-print(greeting('0600'))
-print(greeting('21:00'))
-print(greeting('2100'))
+   # hint convert to 24h-format -> do greet
+   if hour_str is None or len(hour_str) > 8:
+      return "khong dung format"
+
+   sangtoi = hour_str[-2:].upper()
+   if (sangtoi != "AM" and sangtoi != "PM"):
+      sangtoi = 0
+   chuoithoigian = hour_str.replace(" ", "")
+   chuoithoigian = chuoithoigian.replace(":", "")
+
+   if len(chuoithoigian) > 3:
+      gio = int(chuoithoigian[:2])
+   else:
+      gio = int(chuoithoigian[0])
+
+   if sangtoi == 'PM' and gio < 12:
+      gio += 12
+   elif sangtoi == 'AM' and gio == 12:
+      gio = 0
+
+   if 5 <= gio < 12:
+      return "Good morning!"
+   elif 12 <= gio < 18:
+      return "Good afternoon!"
+   elif 18 <= gio < 22:
+      return "Good evening!"
+   else:
+      return "Unknow"
+
+
+#print(greeting('06:00'))
+#print(greeting('0600'))
+#print(greeting('21:00'))
+#print(greeting('2100'))
 #endregion bailam
